@@ -1,0 +1,10 @@
+../libraries/util_timer/util_timer_drv.c:42:21:util_timer_drv_starttimer	16	static
+../libraries/util_timer/util_timer_drv.c:57:21:util_timer_drv_stoptimer	8	static
+../libraries/util_timer/util_timer_drv.c:61:10:util_timer_drv_settimercontext	8	static
+../libraries/util_timer/util_timer_drv.c:66:10:util_timer_drv_gettimercontext	4	static
+../libraries/util_timer/util_timer_drv.c:70:10:util_timer_drv_gettimerelapsedtime	24	static
+../libraries/util_timer/util_timer_drv.c:76:10:util_timer_drv_gettimervalue	8	static
+../libraries/util_timer/util_timer_drv.c:80:6:util_timer_drv_delayms	32	static,ignoring_inline_asm
+../libraries/util_timer/util_timer_drv.c:89:10:util_timer_drv_gettime	32	static
+../libraries/util_timer/util_timer_drv.c:97:24:util_timer_drv_gettimerticks	12	static
+../libraries/util_timer/util_timer_drv.c:102:6:HAL_LPTIM_AutoReloadMatchCallback	32	static

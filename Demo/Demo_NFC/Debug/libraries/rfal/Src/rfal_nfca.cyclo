@@ -1,0 +1,9 @@
+../libraries/rfal/Src/rfal_nfca.c:155:16:rfalNfcaCalculateBcc	2
+../libraries/rfal/Src/rfal_nfca.c:178:12:rfalNfcaPollerInitialize	2
+../libraries/rfal/Src/rfal_nfca.c:194:12:rfalNfcaPollerCheckPresence	6
+../libraries/rfal/Src/rfal_nfca.c:213:12:rfalNfcaPollerTechnologyDetection	4
+../libraries/rfal/Src/rfal_nfca.c:228:12:rfalNfcaPollerSingleCollisionResolution	40
+../libraries/rfal/Src/rfal_nfca.c:414:12:rfalNfcaPollerFullCollisionResolution	25
+../libraries/rfal/Src/rfal_nfca.c:534:12:rfalNfcaPollerSelect	8
+../libraries/rfal/Src/rfal_nfca.c:594:12:rfalNfcaPollerSleep	1
+../libraries/rfal/Src/rfal_nfca.c:614:6:rfalNfcaListenerIsSleepReq	4

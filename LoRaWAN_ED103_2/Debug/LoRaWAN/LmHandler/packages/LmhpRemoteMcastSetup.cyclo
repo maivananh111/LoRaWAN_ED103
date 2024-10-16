@@ -1,0 +1,8 @@
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:190:15:LmhpRemoteMcastSetupPackageFactory	1
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:195:13:LmhpRemoteMcastSetupInit	2
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:213:13:LmhpRemoteMcastSetupIsInitialized	1
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:218:13:LmhpRemoteMcastSetupIsRunning	2
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:228:13:LmhpRemoteMcastSetupProcess	1
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:233:13:LmhpRemoteMcastSetupOnMcpsIndication	13
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:412:13:OnSessionStartTimer	1
+../LoRaWAN/LmHandler/packages/LmhpRemoteMcastSetup.c:423:13:OnSessionStopTimer	1

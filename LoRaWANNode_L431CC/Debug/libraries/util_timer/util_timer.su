@@ -1,0 +1,17 @@
+../libraries/util_timer/util_timer.c:24:21:util_timer_init	4	static,ignoring_inline_asm
+../libraries/util_timer/util_timer.c:32:21:util_timer_create	24	static
+../libraries/util_timer/util_timer.c:50:21:util_timer_start	56	static,ignoring_inline_asm
+../libraries/util_timer/util_timer.c:92:21:util_timer_start_period	32	static
+../libraries/util_timer/util_timer.c:109:21:util_timer_stop	32	static,ignoring_inline_asm
+../libraries/util_timer/util_timer.c:161:21:util_timer_set_period	32	static
+../libraries/util_timer/util_timer.c:178:21:util_timer_set_reloadmode	24	static
+../libraries/util_timer/util_timer.c:190:21:util_timer_get_remainingtime	40	static
+../libraries/util_timer/util_timer.c:206:10:util_timer_is_running	16	static
+../libraries/util_timer/util_timer.c:214:10:util_timer_get_firstremainingtime	16	static
+../libraries/util_timer/util_timer.c:224:10:util_timer_get_currenttime	8	static
+../libraries/util_timer/util_timer.c:228:10:util_timer_get_elapsedtime	40	static
+../libraries/util_timer/util_timer.c:234:6:util_timer_IRQ_handler	48	static,ignoring_inline_asm
+../libraries/util_timer/util_timer.c:277:6:timer_exist	24	static
+../libraries/util_timer/util_timer.c:289:6:timer_set_timeout	64	static
+../libraries/util_timer/util_timer.c:301:6:timer_insert	24	static
+../libraries/util_timer/util_timer.c:321:6:timer_insert_head	24	static

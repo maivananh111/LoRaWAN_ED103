@@ -1,0 +1,8 @@
+../Core/Src/sys_app.c:87:6:SystemApp_Init	8	static
+../Core/Src/sys_app.c:114:9:GetBatteryLevel	16	static
+../Core/Src/sys_app.c:146:9:GetTemperatureLevel	40	static
+../Core/Src/sys_app.c:160:6:GetUniqueId	24	static
+../Core/Src/sys_app.c:183:6:GetDevAddr	16	static
+../Core/Src/sys_app.c:206:13:TimestampNow	16	static
+../Core/Src/sys_app.c:223:10:HAL_GetTick	16	static
+../Core/Src/sys_app.c:255:6:HAL_Delay	16	static

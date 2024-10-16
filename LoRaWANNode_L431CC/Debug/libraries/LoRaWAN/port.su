@@ -1,0 +1,5 @@
+../libraries/LoRaWAN/port.c:10:10:BoardGetRandomSeed	4	static
+../libraries/LoRaWAN/port.c:15:6:BoardGetUniqueId	48	static
+../libraries/LoRaWAN/port.c:28:9:BoardGetBatteryLevel	16	static
+../libraries/LoRaWAN/port.c:34:6:BoardDisableIrq	4	static,ignoring_inline_asm
+../libraries/LoRaWAN/port.c:39:6:BoardEnableIrq	4	static,ignoring_inline_asm

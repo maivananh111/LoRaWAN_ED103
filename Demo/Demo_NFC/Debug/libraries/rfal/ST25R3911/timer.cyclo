@@ -1,0 +1,5 @@
+../libraries/rfal/ST25R3911/timer.c:66:10:timerCalculateTimer	1
+../libraries/rfal/ST25R3911/timer.c:71:6:timerIsExpired	2
+../libraries/rfal/ST25R3911/timer.c:92:6:timerDelay	2
+../libraries/rfal/ST25R3911/timer.c:101:6:timerStopwatchStart	1
+../libraries/rfal/ST25R3911/timer.c:106:10:timerStopwatchMeasure	1

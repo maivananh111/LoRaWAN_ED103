@@ -1,0 +1,6 @@
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_pwr.h:1483:22:LL_PWR_ClearFlag_SB	4	static
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_pwr.h:1493:22:LL_PWR_ClearFlag_WU	4	static
+../Core/Src/main.c:70:13:tracelog	16	static
+../Core/Src/main.c:79:5:main	16	static
+../Core/Src/main.c:143:6:SystemClock_Config	96	static
+../Core/Src/main.c:207:6:Error_Handler	8	static,ignoring_inline_asm

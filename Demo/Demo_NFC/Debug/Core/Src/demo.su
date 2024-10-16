@@ -1,0 +1,11 @@
+../Core/Src/demo.c:132:7:hex2Str	40	static
+../Core/Src/demo.c:168:13:demoNotif	24	static
+../Core/Src/demo.c:197:6:demoIni	24	static
+../Core/Src/demo.c:234:5:demoCycle	40	static
+../Core/Src/demo.c:401:13:demoCE	16	static
+../Core/Src/demo.c:448:13:demoNfcf	128	static
+../Core/Src/demo.c:479:13:demoNfca	16	static
+../Core/Src/demo.c:512:13:demoNfcv	56	static
+../Core/Src/demo.c:567:6:demoP2P	32	static
+../Core/Src/demo.c:609:6:demoAPDU	40	static
+../Core/Src/demo.c:666:12:demoTransceiveBlocking	40	static

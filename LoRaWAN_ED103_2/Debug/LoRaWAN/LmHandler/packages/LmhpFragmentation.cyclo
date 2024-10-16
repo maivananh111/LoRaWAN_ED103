@@ -1,0 +1,6 @@
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:171:15:LmhpFragmentationPackageFactory	1
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:176:13:LmhpFragmentationInit	3
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:194:13:LmhpFragmentationIsInitialized	1
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:199:13:LmhpFragmentationIsRunning	2
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:209:13:LmhpFragmentationProcess	1
+../LoRaWAN/LmHandler/packages/LmhpFragmentation.c:215:13:LmhpFragmentationOnMcpsIndication	24

@@ -1,0 +1,7 @@
+../libraries/LoRaWAN/utilities/utilities.c:30:9:rand1	4	static
+../libraries/LoRaWAN/utilities/utilities.c:34:6:srand1	16	static
+../libraries/LoRaWAN/utilities/utilities.c:39:9:randr	16	static
+../libraries/LoRaWAN/utilities/utilities.c:43:6:memcpy1	24	static
+../libraries/LoRaWAN/utilities/utilities.c:49:6:memcpyr	24	static
+../libraries/LoRaWAN/utilities/utilities.c:56:6:memset1	16	static
+../libraries/LoRaWAN/utilities/utilities.c:62:8:Nibble2HexChar	16	static

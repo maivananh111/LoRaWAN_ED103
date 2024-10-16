@@ -1,0 +1,10 @@
+../libraries/rfal/Src/rfal_nfcb.c:159:19:rfalNfcbCheckSensbRes	5
+../libraries/rfal/Src/rfal_nfcb.c:182:12:rfalNfcbPollerInitialize	2
+../libraries/rfal/Src/rfal_nfcb.c:200:12:rfalNfcbPollerInitializeWithParams	2
+../libraries/rfal/Src/rfal_nfcb.c:214:12:rfalNfcbPollerCheckPresence	9
+../libraries/rfal/Src/rfal_nfcb.c:259:12:rfalNfcbPollerSleep	5
+../libraries/rfal/Src/rfal_nfcb.c:287:12:rfalNfcbPollerSlotMarker	8
+../libraries/rfal/Src/rfal_nfcb.c:322:12:rfalNfcbPollerTechnologyDetection	1
+../libraries/rfal/Src/rfal_nfcb.c:331:12:rfalNfcbPollerCollisionResolution	1
+../libraries/rfal/Src/rfal_nfcb.c:339:12:rfalNfcbPollerSlottedCollisionResolution	35
+../libraries/rfal/Src/rfal_nfcb.c:493:10:rfalNfcbTR2ToFDT	1

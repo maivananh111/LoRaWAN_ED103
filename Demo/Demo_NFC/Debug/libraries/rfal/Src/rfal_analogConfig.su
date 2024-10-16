@@ -1,0 +1,9 @@
+../libraries/rfal/Src/rfal_analogConfig.c:121:6:rfalAnalogConfigInitialize	4	static
+../libraries/rfal/Src/rfal_analogConfig.c:138:6:rfalAnalogConfigIsReady	4	static
+../libraries/rfal/Src/rfal_analogConfig.c:143:12:rfalAnalogConfigListWriteRaw	16	static
+../libraries/rfal/Src/rfal_analogConfig.c:179:12:rfalAnalogConfigListWrite	24	static
+../libraries/rfal/Src/rfal_analogConfig.c:240:12:rfalAnalogConfigListReadRaw	24	static
+../libraries/rfal/Src/rfal_analogConfig.c:264:12:rfalAnalogConfigListRead	32	static
+../libraries/rfal/Src/rfal_analogConfig.c:295:12:rfalSetAnalogConfig	32	static
+../libraries/rfal/Src/rfal_analogConfig.c:362:13:rfalAnalogConfigPtrUpdate	16	static
+../libraries/rfal/Src/rfal_analogConfig.c:385:28:rfalAnalogConfigSearch	40	static

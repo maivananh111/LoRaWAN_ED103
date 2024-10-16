@@ -1,0 +1,17 @@
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:86:28:IncreaseBufferPointer	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:101:28:DecreaseBufferPointer	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:115:28:GetElement	32	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:134:6:LoRaMacConfirmQueueInit	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:157:6:LoRaMacConfirmQueueRestoreNvmCtx	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:171:7:LoRaMacConfirmQueueGetNvmCtx	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:177:6:LoRaMacConfirmQueueAdd	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:198:6:LoRaMacConfirmQueueRemoveLast	8	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:213:6:LoRaMacConfirmQueueRemoveFirst	8	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:228:6:LoRaMacConfirmQueueSetStatus	24	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:243:26:LoRaMacConfirmQueueGetStatus	24	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:258:6:LoRaMacConfirmQueueSetStatusCmn	24	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:280:26:LoRaMacConfirmQueueGetStatusCmn	4	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:285:6:LoRaMacConfirmQueueIsCmdActive	16	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:294:6:LoRaMacConfirmQueueHandleCb	24	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:329:9:LoRaMacConfirmQueueGetCnt	4	static
+../LoRaWAN/Mac/LoRaMacConfirmQueue.c:334:6:LoRaMacConfirmQueueIsFull	4	static

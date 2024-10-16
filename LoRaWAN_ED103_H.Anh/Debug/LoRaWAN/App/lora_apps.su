@@ -1,0 +1,16 @@
+../Drivers/CMSIS/Include/core_cm4.h:1933:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+../LoRaWAN/App/lora_apps.c:101:6:LoRaWAN_Init	16	static
+../LoRaWAN/App/lora_apps.c:118:13:Thd_LmHandlerProcess	24	static
+../LoRaWAN/App/lora_apps.c:128:13:Thd_LoraSendProcess	16	static
+../LoRaWAN/App/lora_apps.c:138:13:OnRxData	24	static
+../LoRaWAN/App/lora_apps.c:143:13:SendTxData	48	static
+../LoRaWAN/App/lora_apps.c:164:13:OnTxData	16	static
+../LoRaWAN/App/lora_apps.c:171:13:OnJoinRequest	16	static
+../LoRaWAN/App/lora_apps.c:180:13:OnMacProcessNotify	24	static,ignoring_inline_asm
+../LoRaWAN/App/lora_apps.c:189:13:OnTxPeriodicityChanged	16	static
+../LoRaWAN/App/lora_apps.c:197:13:OnTxFrameCtrlChanged	16	static
+../LoRaWAN/App/lora_apps.c:201:13:OnPingSlotPeriodicityChanged	16	static
+../LoRaWAN/App/lora_apps.c:205:13:OnSystemReset	8	static
+../LoRaWAN/App/lora_apps.c:212:13:OnBeaconStatusChange	16	static
+../LoRaWAN/App/lora_apps.c:213:13:OnSysTimeUpdate	4	static
+../LoRaWAN/App/lora_apps.c:214:13:OnClassChange	16	static

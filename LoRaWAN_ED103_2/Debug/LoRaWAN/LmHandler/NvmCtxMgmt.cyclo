@@ -1,0 +1,3 @@
+../LoRaWAN/LmHandler/NvmCtxMgmt.c:126:6:NvmCtxMgmtEvent	1
+../LoRaWAN/LmHandler/NvmCtxMgmt.c:174:20:NvmCtxMgmtStore	1
+../LoRaWAN/LmHandler/NvmCtxMgmt.c:263:20:NvmCtxMgmtRestore	1

@@ -1,0 +1,5 @@
+../libraries/LoRaWAN/port.c:10:10:BoardGetRandomSeed	1
+../libraries/LoRaWAN/port.c:15:6:BoardGetUniqueId	1
+../libraries/LoRaWAN/port.c:28:9:BoardGetBatteryLevel	1
+../libraries/LoRaWAN/port.c:34:6:BoardDisableIrq	1
+../libraries/LoRaWAN/port.c:39:6:BoardEnableIrq	1

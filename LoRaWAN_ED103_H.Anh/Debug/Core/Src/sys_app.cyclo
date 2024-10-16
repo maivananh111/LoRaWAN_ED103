@@ -1,0 +1,8 @@
+../Core/Src/sys_app.c:87:6:SystemApp_Init	1
+../Core/Src/sys_app.c:114:9:GetBatteryLevel	3
+../Core/Src/sys_app.c:146:9:GetTemperatureLevel	1
+../Core/Src/sys_app.c:160:6:GetUniqueId	1
+../Core/Src/sys_app.c:183:6:GetDevAddr	1
+../Core/Src/sys_app.c:206:13:TimestampNow	1
+../Core/Src/sys_app.c:223:10:HAL_GetTick	2
+../Core/Src/sys_app.c:255:6:HAL_Delay	1

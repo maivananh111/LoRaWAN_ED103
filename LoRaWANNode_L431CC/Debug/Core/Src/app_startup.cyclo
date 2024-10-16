@@ -1,0 +1,3 @@
+../Core/Src/app_startup.c:16:13:main_task	1
+../Core/Src/app_startup.c:22:13:tracelog	1
+../Core/Src/app_startup.c:27:6:sys_main	2

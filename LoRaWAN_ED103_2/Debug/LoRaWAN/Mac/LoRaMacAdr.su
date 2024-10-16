@@ -1,0 +1,2 @@
+../LoRaWAN/Mac/LoRaMacAdr.c:37:13:CalcNextV10X	48	static
+../LoRaWAN/Mac/LoRaMacAdr.c:123:6:LoRaMacAdrCalcNext	24	static

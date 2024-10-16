@@ -1,0 +1,4 @@
+../Core/Src/spi_port.c:55:6:spiInit	16	static
+../Core/Src/spi_port.c:63:6:spiSelect	16	static
+../Core/Src/spi_port.c:68:6:spiDeselect	16	static
+../Core/Src/spi_port.c:73:19:spiTxRx	32	static

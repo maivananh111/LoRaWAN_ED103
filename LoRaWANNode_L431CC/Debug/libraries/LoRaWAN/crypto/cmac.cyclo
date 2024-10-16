@@ -1,0 +1,4 @@
+../libraries/LoRaWAN/crypto/cmac.c:63:6:AES_CMAC_Init	1
+../libraries/LoRaWAN/crypto/cmac.c:69:6:AES_CMAC_SetKey	1
+../libraries/LoRaWAN/crypto/cmac.c:74:6:AES_CMAC_Update	7
+../libraries/LoRaWAN/crypto/cmac.c:107:6:AES_CMAC_Final	12

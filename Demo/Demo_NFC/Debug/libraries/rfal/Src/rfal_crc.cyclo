@@ -1,0 +1,2 @@
+../libraries/rfal/Src/rfal_crc.c:56:10:rfalCrcCalculateCcitt	2
+../libraries/rfal/Src/rfal_crc.c:74:17:rfalCrcUpdateCcitt	1

@@ -1,0 +1,10 @@
+../libraries/util_timer/util_timer_drv.c:42:21:util_timer_drv_starttimer	3
+../libraries/util_timer/util_timer_drv.c:57:21:util_timer_drv_stoptimer	1
+../libraries/util_timer/util_timer_drv.c:61:10:util_timer_drv_settimercontext	1
+../libraries/util_timer/util_timer_drv.c:66:10:util_timer_drv_gettimercontext	1
+../libraries/util_timer/util_timer_drv.c:70:10:util_timer_drv_gettimerelapsedtime	1
+../libraries/util_timer/util_timer_drv.c:76:10:util_timer_drv_gettimervalue	1
+../libraries/util_timer/util_timer_drv.c:80:6:util_timer_drv_delayms	3
+../libraries/util_timer/util_timer_drv.c:89:10:util_timer_drv_gettime	1
+../libraries/util_timer/util_timer_drv.c:97:24:util_timer_drv_gettimerticks	1
+../libraries/util_timer/util_timer_drv.c:102:6:HAL_LPTIM_AutoReloadMatchCallback	5

@@ -1,0 +1,16 @@
+../libraries/rfal/Src/rfal_nfc.c:131:12:rfalNfcInitialize	2
+../libraries/rfal/Src/rfal_nfc.c:145:12:rfalNfcDiscover	11
+../libraries/rfal/Src/rfal_nfc.c:204:12:rfalNfcDeactivate	3
+../libraries/rfal/Src/rfal_nfc.c:230:12:rfalNfcSelect	2
+../libraries/rfal/Src/rfal_nfc.c:245:14:rfalNfcGetState	1
+../libraries/rfal/Src/rfal_nfc.c:251:12:rfalNfcGetDevicesFound	4
+../libraries/rfal/Src/rfal_nfc.c:272:12:rfalNfcGetActiveDevice	5
+../libraries/rfal/Src/rfal_nfc.c:297:6:rfalNfcWorker	40
+../libraries/rfal/Src/rfal_nfc.c:522:12:rfalNfcDataExchangeStart	17
+../libraries/rfal/Src/rfal_nfc.c:647:12:rfalNfcDataExchangeGetStatus	14
+../libraries/rfal/Src/rfal_nfc.c:743:19:rfalNfcPollTechDetetection	31
+../libraries/rfal/Src/rfal_nfc.c:930:19:rfalNfcPollCollResolution	36
+../libraries/rfal/Src/rfal_nfc.c:1110:19:rfalNfcPollActivation	27
+../libraries/rfal/Src/rfal_nfc.c:1356:19:rfalNfcListenActivation	26
+../libraries/rfal/Src/rfal_nfc.c:1556:19:rfalNfcNfcDepActivate	6
+../libraries/rfal/Src/rfal_nfc.c:1642:19:rfalNfcDeactivation	6

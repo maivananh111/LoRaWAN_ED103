@@ -1,0 +1,9 @@
+../Core/Src/app_main.c:56:6:app_main	3
+../Core/Src/app_main.c:86:13:lorawan_join_failed_handler	1
+../Core/Src/app_main.c:90:13:lorawan_has_joined_handler	1
+../Core/Src/app_main.c:98:13:lorawan_rx_handler	8
+../Core/Src/app_main.c:134:13:lorawan_confirm_class_handler	1
+../Core/Src/app_main.c:142:13:send_lora_frame	2
+../Core/Src/app_main.c:169:13:tx_lora_periodic_handler	1
+../Core/Src/app_main.c:176:17:timers_init	1
+../Core/Src/app_main.c:183:6:HAL_GPIO_EXTI_Callback	4

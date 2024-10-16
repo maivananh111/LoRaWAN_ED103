@@ -1,0 +1,6 @@
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:65:6:LoRaMacComputeMic	24	static
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:94:6:LoRaMacPayloadEncrypt	32	static
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:139:6:LoRaMacPayloadDecrypt	40	static
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:144:6:LoRaMacJoinComputeMic	24	static
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:157:6:LoRaMacJoinDecrypt	24	static
+../libraries/LoRaWAN/mac/LoRaMacCrypto.c:169:6:LoRaMacJoinComputeSKeys	48	static

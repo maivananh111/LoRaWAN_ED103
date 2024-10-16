@@ -1,0 +1,5 @@
+../Core/Src/app_startup.c:20:13:main_task	1
+../Core/Src/app_startup.c:26:6:log_port_flush_string	1
+../Core/Src/app_startup.c:30:10:log_port_get_systime	1
+../Core/Src/app_startup.c:34:5:_write	1
+../Core/Src/app_startup.c:44:6:sys_main	2

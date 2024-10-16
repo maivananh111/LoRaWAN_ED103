@@ -1,0 +1,10 @@
+../libraries/LoRaWAN/crypto/aes.c:320:13:copy_block	1
+../libraries/LoRaWAN/crypto/aes.c:346:13:copy_block_nn	2
+../libraries/LoRaWAN/crypto/aes.c:352:13:xor_block	1
+../libraries/LoRaWAN/crypto/aes.c:378:13:copy_and_key	1
+../libraries/LoRaWAN/crypto/aes.c:407:13:add_round_key	1
+../libraries/LoRaWAN/crypto/aes.c:411:13:shift_sub_rows	1
+../libraries/LoRaWAN/crypto/aes.c:473:13:mix_sub_columns	1
+../libraries/LoRaWAN/crypto/aes.c:539:13:lora_aes_set_key	7
+../libraries/LoRaWAN/crypto/aes.c:591:13:lora_aes_encrypt	3
+../libraries/LoRaWAN/crypto/aes.c:620:13:lora_aes_cbc_encrypt	3

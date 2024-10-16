@@ -1,0 +1,10 @@
+../libraries/Tracelog/TraceLog.c:87:6:log_monitor_init	16	static
+../libraries/Tracelog/TraceLog.c:100:6:log_monitor_set_log	16	static
+../libraries/Tracelog/TraceLog.c:122:6:LOG	48	static
+../libraries/Tracelog/TraceLog.c:147:6:LOG_INFO	52	static
+../libraries/Tracelog/TraceLog.c:172:6:LOG_WARN	52	static
+../libraries/Tracelog/TraceLog.c:197:6:LOG_ERROR	52	static
+../libraries/Tracelog/TraceLog.c:222:6:LOG_DEBUG	52	static
+../libraries/Tracelog/TraceLog.c:247:6:LOG_MEM	52	static
+../libraries/Tracelog/TraceLog.c:272:6:LOG_EVENT	52	static
+../libraries/Tracelog/TraceLog.c:297:6:LOG_RET	52	static

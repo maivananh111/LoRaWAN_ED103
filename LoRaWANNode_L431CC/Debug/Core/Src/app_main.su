@@ -1,0 +1,9 @@
+../Core/Src/app_main.c:56:6:app_main	32	static
+../Core/Src/app_main.c:86:13:lorawan_join_failed_handler	8	static
+../Core/Src/app_main.c:90:13:lorawan_has_joined_handler	8	static
+../Core/Src/app_main.c:98:13:lorawan_rx_handler	32	static
+../Core/Src/app_main.c:134:13:lorawan_confirm_class_handler	16	static
+../Core/Src/app_main.c:142:13:send_lora_frame	16	static
+../Core/Src/app_main.c:169:13:tx_lora_periodic_handler	16	static
+../Core/Src/app_main.c:176:17:timers_init	24	static
+../Core/Src/app_main.c:183:6:HAL_GPIO_EXTI_Callback	24	static,ignoring_inline_asm

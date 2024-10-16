@@ -1,0 +1,16 @@
+../libraries/LoRaWAN/mac/region/RegionCommon.c:35:16:CountChannels	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:49:10:RegionCommonGetJoinDc	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:68:6:RegionCommonChanVerifyDr	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:93:9:RegionCommonValueInRange	16	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:102:6:RegionCommonChanDisable	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:117:9:RegionCommonCountChannels	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:134:6:RegionCommonChanMaskCopy	32	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:145:6:RegionCommonSetBandTxDone	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:158:13:RegionCommonUpdateBandTimeOff	80	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:203:9:RegionCommonParseLinkAdrReq	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:227:9:RegionCommonLinkAdrReqVerifyParams	48	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:290:8:RegionCommonComputeSymbolTimeLoRa	24	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:295:8:RegionCommonComputeSymbolTimeFsk	16	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:300:6:RegionCommonComputeRxWindowParameters	40	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:306:8:RegionCommonComputeTxPower	32	static
+../libraries/LoRaWAN/mac/region/RegionCommon.c:315:6:RegionCommonCalcBackOff	80	static
