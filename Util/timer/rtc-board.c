@@ -167,8 +167,8 @@ void RtcInit(void) {
         // Enable Direct Read of the calendar registers (not through Shadow registers)
         HAL_RTCEx_EnableBypassShadow( &RtcHandle );
 
-        HAL_NVIC_SetPriority( RTC_Alarm_IRQn, 1, 0 );
-        HAL_NVIC_EnableIRQ( RTC_Alarm_IRQn );
+        HAL_NVIC_SetPriority(RTC_Alarm_IRQn, 5, 0);
+        HAL_NVIC_EnableIRQ(RTC_Alarm_IRQn);
 
         // Init alarm.
         HAL_RTC_DeactivateAlarm( &RtcHandle, RTC_ALARM_A );

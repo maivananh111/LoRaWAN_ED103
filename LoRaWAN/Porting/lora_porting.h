@@ -17,9 +17,16 @@ extern "C"{
 
 
 
+void app_enter_critical(void);
+void app_exit_critical(void);
+
 uint8_t GetBatteryLevel(void);
+
 uint32_t GetRandomSeed(void);
-void EnterSleepMode(uint32_t time);
+uint32_t getRandom(void);
+
+void EnterSleepMode(void);
+void EnterSleepModeOn(uint32_t time);
 
 #ifdef __cplusplus
 }

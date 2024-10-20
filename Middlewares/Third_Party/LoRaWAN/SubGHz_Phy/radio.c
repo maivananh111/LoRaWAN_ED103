@@ -1358,5 +1358,5 @@ void Radio_task(void *pvParameters){
 
 void Radio_HardWare_Init(void){
 	_lora_sem = xSemaphoreCreateBinary();
-	xTaskCreate(Radio_task, "Radio_task", 10240/4, NULL, 20, NULL);
+	xTaskCreate(Radio_task, "Radio_task", 10240/4, NULL, 30, NULL);
 }

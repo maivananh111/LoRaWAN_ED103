@@ -79,7 +79,7 @@ extern "C" {
  * LoRaWAN Adaptive Data Rate
  * @note Please note that when ADR is enabled the end-device should be static
  */
-#define LORAWAN_ADR_STATE                           LORAMAC_HANDLER_ADR_ON
+#define LORAWAN_ADR_STATE                           LORAMAC_HANDLER_ADR_OFF
 
 /*!
  * LoRaWAN Default Data Rate
@@ -127,42 +127,11 @@ extern "C" {
  */
 #define LORAWAN_DEFAULT_CLASS_B_C_RESP_TIMEOUT      8000
 
-/*Send*/
-#define CFG_APP_LORA_PROCESS_NAME                  "LORA_SEND_PROCESS"
-#define CFG_APP_LORA_PROCESS_ATTR_BITS             (0)
-#define CFG_APP_LORA_PROCESS_CB_MEM                (0)
-#define CFG_APP_LORA_PROCESS_CB_SIZE               (0)
-#define CFG_APP_LORA_PROCESS_STACK_MEM             (0)
-#define CFG_APP_LORA_PROCESS_PRIORITY              osPriorityBelowNormal
-#define CFG_APP_LORA_PROCESS_STACK_SIZE            (4*1024)
 
-/*LM Handler*/
-#define CFG_LM_HANDLER_PROCESS_NAME                "LM_HANDLER_PROCESS"
-#define CFG_LM_HANDLER_PROCESS_ATTR_BITS           (0)
-#define CFG_LM_HANDLER_PROCESS_CB_MEM              (0)
-#define CFG_LM_HANDLER_PROCESS_CB_SIZE             (0)
-#define CFG_LM_HANDLER_PROCESS_STACK_MEM           (0)
-#define CFG_LM_HANDLER_PROCESS_PRIORITY            osPriorityNormal
-#define CFG_LM_HANDLER_PROCESS_STACK_SIZE          (2*1024)
-
-/* USER CODE BEGIN EC */
-
-/* USER CODE END EC */
-
-/* Exported macros -----------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-
-/* USER CODE END EM */
-
-/* Exported functions prototypes ---------------------------------------------*/
 /**
   * @brief  Init Lora Application
   */
 void LoRaWAN_Init(void);
-
-/* USER CODE BEGIN EFP */
-
-/* USER CODE END EFP */
 
 #ifdef __cplusplus
 }
