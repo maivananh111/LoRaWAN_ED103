@@ -29,15 +29,17 @@
 
 #define DEVICE CALLPOINT_ACTUATOR
 
-#define JOINDELAY_EXPO 			20000U
+#define JOINDELAY_EXPO 			(20000U)
 #define JOINDELAY_MAX  			(10*60*1000U)
 #define REGULARCHECKS_PERIOD 	(60*1000U)
-#define MAX_SEND_FAILED_COUNT 	3U
+#define MAX_SEND_FAILED_COUNT 	(3U)
+#define PRE_TO_ACTIVATION_TIME  (1*60*1000U)
+#define PRE_ACTIVATION_DELAY    (30*1000U)
 
-#define EVENT_BOOTUP		   	(1<<0U)
-#define EVENT_REGULAR_CHECKS  	(1<<1U)
-#define EVENT_PREACTIVATION  	(1<<2U)
-#define EVENT_ACTIVATION   		(1<<3U)
+#define SESSION_BOOTUP		   	(1<<0U)
+#define SESSION_REGULAR_CHECKS  (1<<1U)
+#define SESSION_PREACTIVATION  	(1<<2U)
+#define SESSION_ACTIVATION   	(1<<3U)
 
 
 static const char *TAG = "WAN";
@@ -98,10 +100,12 @@ static TaskHandle_t htask_app;
 static QueueHandle_t que_timer_event;
 static SemaphoreHandle_t sem_newoperation_isready;
 
-static uint32_t nextjoin_delay = JOINDELAY_EXPO;
-static uint8_t send_failed_count = 0;
+static uint32_t next_join_delay = JOINDELAY_EXPO;
+static uint32_t curr_activation_time = 0;
+static uint32_t next_activation_time = 0;
+static uint8_t uplink_session_count = 0;
 static uint8_t running_step = 0;
-
+static bool is_firsttime_activation = true;
 
 static TimerEvent_t send_repeat_timer;
 static TimerEvent_t regularcheck_timer;
@@ -130,19 +134,13 @@ void LoRaWAN_Init(void){
 	que_timer_event = xQueueCreate(5, sizeof(uint32_t));
 	sem_newoperation_isready = xSemaphoreCreateBinary();
 	xSemaphoreGive(sem_newoperation_isready);
-	if (xTaskCreate(Task_LmHandlerProcess, "Task_LmHandlerProcess", 4096/4, NULL, 20, &htask_lmhandler) != pdTRUE)
-		Error_Handler();
-
-	if (xTaskCreate(Task_AppProcess, "Task_AppProcess", 8192/4, NULL, 10, &htask_app) != pdTRUE)
-		Error_Handler();
-
-
+	xTaskCreate(Task_LmHandlerProcess, "Task_LmHandlerProcess", 4096/4, NULL, 20, &htask_lmhandler);
+	xTaskCreate(Task_AppProcess, "Task_AppProcess", 8192/4, NULL, 10, &htask_app);
 
 	TimerInit(&send_repeat_timer, 	TimerOnRepeatSend);
 	TimerInit(&regularcheck_timer, 	TimerOnRegularCheck);
 	TimerInit(&preactivation_timer, TimerOnPreActivation);
 	TimerInit(&activation_timer, 	TimerOnActivation);
-
 
 
     const Version_t appVersion = {
@@ -172,35 +170,40 @@ void LoRaWAN_Init(void){
  */
 
 static void Task_AppProcess(void *){
-	static uint32_t event;
+	static uint32_t session;
 	vTaskSuspend(NULL);
 
 	while(1){
-		if (xSemaphoreTake(sem_newoperation_isready, portMAX_DELAY)) {
-			LOGE(TAG, "*****************************************************************");
-			if (xQueueReceive(que_timer_event, &event, portMAX_DELAY)) {
-				LOGE(TAG, "QUEUE EVENT %d", event);
-				TimerSetContext(&send_repeat_timer, &event);
-				switch (event){
-					case EVENT_BOOTUP:
-						send_bootup();
-					break;
-					case EVENT_REGULAR_CHECKS:
-						send_regularchecks();
-					break;
-					case EVENT_PREACTIVATION:
-						send_preactivation();
-					break;
-					case EVENT_ACTIVATION:
-						send_activation();
-					break;
-					default:
-					break;
+		if (!LmHandlerIsBusy()){
+			if (xSemaphoreTake(sem_newoperation_isready, portMAX_DELAY)) {
+				LOGE(TAG, "******************************************************************************");
+				if (xQueueReceive(que_timer_event, &session, portMAX_DELAY)) {
+					TimerSetContext(&send_repeat_timer, &session);
+					switch (session){
+						case SESSION_BOOTUP:
+							LOGV(TAG, "START SESSION BOOTUP");
+							send_bootup();
+						break;
+						case SESSION_REGULAR_CHECKS:
+							LOGV(TAG, "START SESSION REGULAR CHECKS");
+							send_regularchecks();
+						break;
+						case SESSION_PREACTIVATION:
+							LOGV(TAG, "START SESSION PREACTIVATION");
+							send_preactivation();
+						break;
+						case SESSION_ACTIVATION:
+							LOGV(TAG, "START SESSION ACTIVATION");
+							send_activation();
+						break;
+						default:
+						break;
+					}
+					TimerSetValue(&send_repeat_timer, 200);
+					TimerStart(&send_repeat_timer);
+					vTaskSuspend(NULL);
+					EnterSleepMode();
 				}
-				TimerSetValue(&send_repeat_timer, 200);
-				TimerStart(&send_repeat_timer);
-				vTaskSuspend(NULL);
-				EnterSleepMode();
 			}
 		}
 	}
@@ -226,86 +229,129 @@ static void Task_LmHandlerProcess(void *){
  */
 static void OnJoinRequest(LmHandlerJoinParams_t *params) {
 	DisplayJoinRequestUpdate(params);
+
 	if (params->Status == LORAMAC_HANDLER_ERROR) {
-		if (nextjoin_delay >= JOINDELAY_MAX) {
-			nextjoin_delay = UINT32_MAX;
+		if (next_join_delay >= JOINDELAY_MAX) {
+			next_join_delay = UINT32_MAX;
 			LOGE(TAG, "Join failed after 10mins, enter infinity loop");
 		}
-		EnterSleepModeOn(nextjoin_delay);
-		nextjoin_delay += nextjoin_delay;
+		EnterSleepModeOn(next_join_delay);
+		next_join_delay += next_join_delay;
 		LmHandlerJoin();
 	}
 	else {
-		LmHandlerErrorStatus_t sync_status = LmhpClockSyncAppTimeReq();
-		LOGW(TAG, "Sync time status %d", sync_status);
-		SysTime_t curTime = { .Seconds = 0, .SubSeconds = 0 };
-		curTime = SysTimeGet( );
-		LOGW(TAG, "Curent time is %ds %dms", curTime.Seconds, curTime.SubSeconds);
+		uint32_t bootup_event = SESSION_BOOTUP;
+		xQueueSend(que_timer_event, &bootup_event, 100);
+		vTaskResume(htask_app);
 	}
 }
 
 static void OnTxData(LmHandlerTxParams_t *params){
-	DisplayTxUpdate( params );
+	DisplayTxUpdate(params);
+
+	if (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET){
+		if (uplink_session_count < MAX_SEND_FAILED_COUNT){
+			uint32_t nexttx = (getRandom()%7 + 3)*1000;
+			TimerSetValue(&send_repeat_timer, (getRandom()%7 + 3)*1000);
+			TimerStart(&send_repeat_timer);
+			LOGW(TAG, "REPEAT UPLINK SESSION AFTER %dms", nexttx);
+		}
+		else {
+			LOGW(TAG, "THIS IS THE LAST ATTEMP TO UPLINK OF SESSION");
+		}
+	}
 }
 
 static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params) {
+	bool sleep_after_rx = false;
+	uint32_t new_next_activation_time = 0;
 	DisplayRxUpdate(appData, params);
 
-	if (appData->BufferSize != 0){
-		uint8_t command = appData->Buffer[0];
+	if (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET){
+		if (appData->BufferSize != 0){
+			uint8_t command = appData->Buffer[0];
 
-		switch(command){
-			case APPPACK_RES_BOOT_UP:
-				LOGV(TAG, "RECEIVE APPPACK_RES_BOOT_UP");
-				TimerSetValue(&regularcheck_timer, REGULARCHECKS_PERIOD);
-				TimerStart(&regularcheck_timer);
-				EnterSleepMode();
-			break;
-			case APPPACK_RES_REGULAR_CHECK:
-				LOGV(TAG, "RECEIVE APPPACK_RES_REGULAR_CHECK");
-			break;
-			case APPPACK_RES_PREACTIVATION_CHECK:
+			switch(command){
+				case APPPACK_RES_BOOT_UP: {
+					LOGW(TAG, "RECEIVE APPPACK_RES_BOOT_UP");
+					TimerSetValue(&regularcheck_timer, REGULARCHECKS_PERIOD);
+					TimerStart(&regularcheck_timer);
+				}
+				break;
 
-			break;
-			case APPPACK_REQ_ACTIVATION_STATUSACK:
+				case APPPACK_RES_REGULAR_CHECK: {
+					LOGW(TAG, "RECEIVE APPPACK_RES_REGULAR_CHECK");
 
-			break;
-			default:
+					apppack_res_regularcheck_t res;
+					if (apppack_res_regularchecks_parse(appData->Buffer, appData->BufferSize, &res))
+						new_next_activation_time = res.next_trig_time;
+					else goto end_session;
+				}
+				break;
+				case APPPACK_RES_PREACTIVATION_CHECK: {
+					LOGW(TAG, "RECEIVE APPPACK_RES_PREACTIVATION_CHECK");
 
-			break;
+					apppack_res_preactivation_t res;
+					if (apppack_res_preactivation_parse(appData->Buffer, appData->BufferSize, &res))
+						new_next_activation_time = res.next_trig_time;
+					else goto end_session;
+				}
+				break;
+				case APPPACK_REQ_ACTIVATION_STATUSACK:
+					LOGW(TAG, "RECEIVE APPPACK_REQ_ACTIVATION_STATUSACK");
+
+					apppack_res_activation_t res;
+					if (apppack_res_activation_parse(appData->Buffer, appData->BufferSize, &res))
+						new_next_activation_time = res.next_trig_time;
+					else goto end_session;
+				break;
+				default:
+					return;
+				break;
+			}
+		}
+		else{
+			if(uplink_session_count >= MAX_SEND_FAILED_COUNT){
+				LOGE(TAG, "SESSION FAILED");
+				goto end_session;
+			}
+			return;
 		}
 
-		if (command == APPPACK_RES_BOOT_UP ||
-			command == APPPACK_RES_REGULAR_CHECK ||
-			command == APPPACK_RES_PREACTIVATION_CHECK ||
-			command == APPPACK_REQ_ACTIVATION_STATUSACK) {
-			TimerStop(&send_repeat_timer);
 
-			if(!xPortIsInsideInterrupt()){
-				if(xSemaphoreGive(sem_newoperation_isready) != pdPASS)
-					LOGE(TAG, "SEMAPHORE ERROR");
+		SysTime_t curTime = SysTimeGet();
+		if (new_next_activation_time > curTime.Seconds
+				&& new_next_activation_time > (curr_activation_time + PRE_ACTIVATION_DELAY + PRE_TO_ACTIVATION_TIME)){
+			next_activation_time = new_next_activation_time;
+
+			if (is_firsttime_activation == true){
+				is_firsttime_activation = false;
+				curr_activation_time = next_activation_time;
+				LOGE(TAG, "PREACTIVATION AT %lus, ACTIVATION AT %lus",
+						curr_activation_time - PRE_TO_ACTIVATION_TIME - curTime.Seconds, curr_activation_time - curTime.Seconds);
+				TimerSetValue(&preactivation_timer, curr_activation_time - PRE_TO_ACTIVATION_TIME - curTime.Seconds);
+				TimerStart(&preactivation_timer);
+				TimerSetValue(&activation_timer, curr_activation_time - curTime.Seconds);
+				TimerStart(&activation_timer);
 			}
-			else {
-				BaseType_t yield;
-				if(xSemaphoreGiveFromISR(sem_newoperation_isready, &yield) != pdPASS)
-					LOGE(TAG, "SEMAPHORE IT ERROR");
-			}
-			send_failed_count = 0;
-			vTaskResume(htask_app);
 		}
+
+end_session:
+		TimerStop(&send_repeat_timer);
+		if(xSemaphoreGive(sem_newoperation_isready) != pdPASS) LOGE(TAG, "SEMAPHORE ERROR");
+		uplink_session_count = 0;
+		vTaskResume(htask_app);
+		LOGV(TAG, "END SESSION");
+		LOGE(TAG, "******************************************************************************");
+
+		if (sleep_after_rx) EnterSleepMode();
 	}
 }
 
 
 static void OnSysTimeUpdate( bool isSynchronized, int32_t timeCorrection) {
-	LOGW(TAG, "OnSysTimeUpdate, Sync range=%d, Calibration value=%d", isSynchronized, timeCorrection);
-	SysTime_t curTime = { .Seconds = 0, .SubSeconds = 0 };
-	curTime = SysTimeGet( );
-	LOGW(TAG, "Curent time is %ds %dms", curTime.Seconds, curTime.SubSeconds);
-
-	uint32_t bootup_event = EVENT_BOOTUP;
-	xQueueSend(que_timer_event, &bootup_event, 100);
-	vTaskResume(htask_app);
+	SysTime_t curTime = SysTimeGet();
+	LOGV(TAG, "System time has been synchronized, current time is %ds %dms", curTime.Seconds, curTime.SubSeconds);
 }
 
 
@@ -315,56 +361,60 @@ static void OnSysTimeUpdate( bool isSynchronized, int32_t timeCorrection) {
  * Application timers handlers.
  */
 
-static void TimerOnRepeatSend(void *eventtype) {
-	send_failed_count++;
+static void TimerOnRepeatSend(void *session) {
+	uint32_t *type = (uint32_t *)session;
+	LmHandlerErrorStatus_t status;
+
+	uplink_session_count++;
 	TimerStop(&send_repeat_timer);
 
-	uint32_t *event = (uint32_t *)eventtype;
-	LOGV(TAG, "SEND PACKET FOR EVENT 0x%02x", (uint32_t)(*event));
+	if (uplink_session_count <= MAX_SEND_FAILED_COUNT) {
+		status = (*type == SESSION_BOOTUP)? LmhpClockSyncAppTimeReq() : LmHandlerSend(&AppData, LORAWAN_DEFAULT_CONFIRMED_MSG_STATE);
 
-	if(send_failed_count < MAX_SEND_FAILED_COUNT){
-		if (LmHandlerSend(&AppData, LORAWAN_DEFAULT_CONFIRMED_MSG_STATE) != LORAMAC_HANDLER_SUCCESS) {
-			LOGE(TAG, "Send uplink failed");
+		if (status != LORAMAC_HANDLER_SUCCESS)
+			LOGE(TAG, "SENT UPLINK FAILED");
+		else {
+			LOGV(TAG, "SENT UPLINK");
+			if (*type == SESSION_BOOTUP) {
+				SysTime_t curTime = SysTimeGet();
+				LOGW(TAG, "Sync time status %d, curent time is %ds %dms", status, curTime.Seconds, curTime.SubSeconds);
+			}
 		}
-	}
-
-	if(send_failed_count < MAX_SEND_FAILED_COUNT){
-		uint32_t nexttx = (getRandom()%7 + 3)*1000;
-		TimerSetValue(&send_repeat_timer, (getRandom()%7 + 3)*1000);
-		TimerStart(&send_repeat_timer);
-		LOGV(TAG, "REPEAT TX AFTER %dms", nexttx);
-//		EnterSleepMode();
-	}
-	else{
-		BaseType_t yield;
-		xSemaphoreGiveFromISR(sem_newoperation_isready, &yield);
-		if(yield) portEND_SWITCHING_ISR (yield);
-		send_failed_count = 0;
-		xTaskResumeFromISR(htask_app);
-		LOGE(TAG, "EVENT %d SEND FAILED, IGNORING", (uint32_t)(*event));
 	}
 }
 
 static void TimerOnRegularCheck(void *){
 	BaseType_t yield;
-	uint32_t event = EVENT_REGULAR_CHECKS;
-	xQueueSendFromISR(que_timer_event, &event, &yield);
+	uint32_t session = SESSION_REGULAR_CHECKS;
+	xQueueSendFromISR(que_timer_event, &session, &yield);
 	if(yield) portYIELD_FROM_ISR(yield);
 	TimerReset(&regularcheck_timer);
 }
 
 static void TimerOnPreActivation(void *){
 	BaseType_t yield;
-	uint32_t event = EVENT_PREACTIVATION;
-	xQueueSendFromISR(que_timer_event, &event, &yield);
+	uint32_t session = SESSION_PREACTIVATION;
+	xQueueSendFromISR(que_timer_event, &session, &yield);
 	if(yield) portYIELD_FROM_ISR(yield);
+
+	TimerStop(&preactivation_timer);
 }
 
 static void TimerOnActivation(void *){
 	BaseType_t yield;
-	uint32_t event = EVENT_ACTIVATION;
-	xQueueSendFromISR(que_timer_event, &event, &yield);
+	uint32_t session = SESSION_ACTIVATION;
+	xQueueSendFromISR(que_timer_event, &session, &yield);
 	if(yield) portYIELD_FROM_ISR(yield);
+
+	TimerStop(&activation_timer);
+	SysTime_t curTime = SysTimeGet();
+	curr_activation_time = next_activation_time;
+	LOGE(TAG, "PREACTIVATION AT %lus, ACTIVATION AT %lus",
+							curr_activation_time - PRE_TO_ACTIVATION_TIME - curTime.Seconds, curr_activation_time - curTime.Seconds);
+	TimerSetValue(&preactivation_timer, curr_activation_time - PRE_TO_ACTIVATION_TIME - curTime.Seconds);
+	TimerStart(&preactivation_timer);
+	TimerSetValue(&activation_timer, curr_activation_time - curTime.Seconds);
+	TimerStart(&activation_timer);
 }
 
 
@@ -384,7 +434,6 @@ static void send_bootup(void){
 	};
 
 	AppData.BufferSize = apppack_req_bootup_create(&pack_bootup, AppDataBuffer);
-	LOGV(TAG, "SEND BOOTUP");
 }
 
 static void send_regularchecks(void){
@@ -392,7 +441,6 @@ static void send_regularchecks(void){
 		.devtype = DEVICE,
 	};
 	AppData.BufferSize = apppack_req_regularchecks_create(&pack_regcheck, AppDataBuffer);
-	LOGV(TAG, "SEND REGULAR CHECK");
 }
 
 static void send_preactivation(void){
@@ -400,7 +448,6 @@ static void send_preactivation(void){
 		.devtype = DEVICE,
 	};
 	AppData.BufferSize = apppack_req_preactivation_create(&pack_preactivation, AppDataBuffer);
-	LOGV(TAG, "SEND PREACTIVATION CHECK");
 }
 
 static void send_activation(void){
@@ -409,7 +456,6 @@ static void send_activation(void){
 		.runstep = running_step,
 	};
 	AppData.BufferSize = apppack_req_activation_create(&pack_activation, AppDataBuffer);
-	LOGV(TAG, "SEND ACTIVATION");
 }
 
 
