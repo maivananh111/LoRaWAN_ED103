@@ -1929,7 +1929,7 @@ static void ProcessMacCommands( uint8_t *payload, uint8_t macIndex, uint8_t comm
             return;
         }
 
-        LOGW("MAC", "###### ============ ON MAC COMMAND %s ============ ######", LoRaMacSrvCmdStrings[payload[macIndex]]);
+//        LOGW("MAC", "ON MAC COMMAND: %s", LoRaMacSrvCmdStrings[payload[macIndex]]);
 
         // Decode Frame MAC commands
         switch( payload[macIndex++] )

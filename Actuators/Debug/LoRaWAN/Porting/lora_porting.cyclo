@@ -1,0 +1,9 @@
+../LoRaWAN/Porting/lora_porting.c:27:6:app_enter_critical	1
+../LoRaWAN/Porting/lora_porting.c:31:6:app_exit_critical	1
+../LoRaWAN/Porting/lora_porting.c:38:9:GetBatteryLevel	1
+../LoRaWAN/Porting/lora_porting.c:44:10:GetRandomSeed	1
+../LoRaWAN/Porting/lora_porting.c:48:10:getRandom	1
+../LoRaWAN/Porting/lora_porting.c:54:6:EnableSleepMode	1
+../LoRaWAN/Porting/lora_porting.c:58:6:EnterSleepMode	2
+../LoRaWAN/Porting/lora_porting.c:71:6:EnterSleepModeOn	2
+../LoRaWAN/Porting/lora_porting.c:92:13:OnWakeUp	1

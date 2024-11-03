@@ -1,0 +1,10 @@
+../Util/logger/logger.c:87:6:log_monitor_init	16	static
+../Util/logger/logger.c:100:6:log_monitor_set_log	16	static
+../Util/logger/logger.c:122:6:LOG	48	static
+../Util/logger/logger.c:147:6:LOGI	52	static
+../Util/logger/logger.c:172:6:LOGW	52	static
+../Util/logger/logger.c:197:6:LOGE	52	static
+../Util/logger/logger.c:222:6:LOGD	52	static
+../Util/logger/logger.c:247:6:LOGM	52	static
+../Util/logger/logger.c:272:6:LOGV	52	static
+../Util/logger/logger.c:297:6:LOGR	52	static

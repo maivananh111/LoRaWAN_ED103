@@ -1,0 +1,7 @@
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:195:13:OnFragmentTxDelay	16	static
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:203:15:LmhpFragmentationPackageFactory	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:208:13:LmhpFragmentationInit	24	static
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:230:13:LmhpFragmentationIsInitialized	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:235:13:LmhpFragmentationIsRunning	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:245:13:LmhpFragmentationProcess	16	static,ignoring_inline_asm
+../LoRaWAN/App/LmHandler/packages/LmhpFragmentation.c:276:13:LmhpFragmentationOnMcpsIndication	88	static

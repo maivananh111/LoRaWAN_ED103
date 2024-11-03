@@ -1,0 +1,8 @@
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:151:15:LmphClockSyncPackageFactory	1
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:156:13:LmhpClockSyncInit	2
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:172:13:LmhpClockSyncIsInitialized	1
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:177:13:LmhpClockSyncIsRunning	2
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:187:13:LmhpClockSyncProcess	3
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:198:13:LmhpClockSyncOnMcpsConfirm	2
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:223:13:LmhpClockSyncOnMcpsIndication	13
+../LoRaWAN/App/LmHandler/packages/LmhpClockSync.c:322:24:LmhpClockSyncAppTimeReq	3

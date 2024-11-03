@@ -1,0 +1,33 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../Middlewares/Third_Party/LoRaWAN/Mac/region/Region.c \
+../Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.c \
+../Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.c 
+
+OBJS += \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.o \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.o \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.o 
+
+C_DEPS += \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.d \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.d \
+./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+Middlewares/Third_Party/LoRaWAN/Mac/region/%.o Middlewares/Third_Party/LoRaWAN/Mac/region/%.su Middlewares/Third_Party/LoRaWAN/Mac/region/%.cyclo: ../Middlewares/Third_Party/LoRaWAN/Mac/region/%.c Middlewares/Third_Party/LoRaWAN/Mac/region/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L431xx -D_GNU_SOURCE -DACTIVE_REGION=LORAMAC_REGION_AS923 -DSOFT_SE -DREGION_AS923 -c -I../Core/Inc -I../Util/logger -I../Util/mem -I../Util/timer -I../Util/nvmm -I../LoRaWAN/Porting -I../LoRaWAN/App -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Middlewares/Third_Party/LoRaWAN/Utilities -I../Middlewares/Third_Party/LoRaWAN/SubGHz_Phy -I../Middlewares/Third_Party/LoRaWAN/Mac/region -I../Middlewares/Third_Party/LoRaWAN/Mac -I../Middlewares/Third_Party/LoRaWAN/Crypto -I../LoRaWAN/App/LmHandler -I../LoRaWAN/App/LmHandler/packages -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+
+clean: clean-Middlewares-2f-Third_Party-2f-LoRaWAN-2f-Mac-2f-region
+
+clean-Middlewares-2f-Third_Party-2f-LoRaWAN-2f-Mac-2f-region:
+	-$(RM) ./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.cyclo ./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.d ./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.o ./Middlewares/Third_Party/LoRaWAN/Mac/region/Region.su ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.cyclo ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.d ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.o ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionAS923.su ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.cyclo ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.d ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.o ./Middlewares/Third_Party/LoRaWAN/Mac/region/RegionCommon.su
+
+.PHONY: clean-Middlewares-2f-Third_Party-2f-LoRaWAN-2f-Mac-2f-region
+

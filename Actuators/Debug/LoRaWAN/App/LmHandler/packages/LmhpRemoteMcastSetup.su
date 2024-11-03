@@ -1,0 +1,8 @@
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:199:15:LmhpRemoteMcastSetupPackageFactory	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:204:13:LmhpRemoteMcastSetupInit	24	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:222:13:LmhpRemoteMcastSetupIsInitialized	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:227:13:LmhpRemoteMcastSetupIsRunning	4	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:237:13:LmhpRemoteMcastSetupProcess	16	static,ignoring_inline_asm
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:267:13:LmhpRemoteMcastSetupOnMcpsIndication	96	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:452:13:OnSessionStartTimer	16	static
+../LoRaWAN/App/LmHandler/packages/LmhpRemoteMcastSetup.c:459:13:OnSessionStopTimer	16	static

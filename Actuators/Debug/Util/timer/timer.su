@@ -1,0 +1,16 @@
+../Util/timer/timer.c:93:6:TimerInit	16	static
+../Util/timer/timer.c:103:6:TimerSetContext	16	static
+../Util/timer/timer.c:107:6:TimerStart	24	static,ignoring_inline_asm
+../Util/timer/timer.c:140:13:TimerInsertTimer	24	static
+../Util/timer/timer.c:159:13:TimerInsertNewHeadTimer	24	static
+../Util/timer/timer.c:171:6:TimerIsStarted	16	static
+../Util/timer/timer.c:175:6:TimerIrqHandler	40	static
+../Util/timer/timer.c:220:6:TimerStop	24	static,ignoring_inline_asm
+../Util/timer/timer.c:281:13:TimerExists	24	static
+../Util/timer/timer.c:293:6:TimerReset	16	static
+../Util/timer/timer.c:298:6:TimerSetValue	24	static
+../Util/timer/timer.c:314:13:TimerGetCurrentTime	16	static
+../Util/timer/timer.c:319:13:TimerGetElapsedTime	24	static
+../Util/timer/timer.c:330:13:TimerSetTimeout	32	static
+../Util/timer/timer.c:341:13:TimerTempCompensation	16	static
+../Util/timer/timer.c:345:6:TimerProcess	8	static

@@ -1,0 +1,2 @@
+../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se-hal.c:31:6:SoftSeHalGetUniqueId	16	static
+../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se-hal.c:43:10:SoftSeHalGetRandomNumber	8	static

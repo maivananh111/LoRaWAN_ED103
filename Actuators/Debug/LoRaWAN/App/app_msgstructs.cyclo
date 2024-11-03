@@ -1,0 +1,2 @@
+../LoRaWAN/App/app_msgstructs.c:13:9:appmsg_create_message	7
+../LoRaWAN/App/app_msgstructs.c:34:6:appmsg_parse_message	8

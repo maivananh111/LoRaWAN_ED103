@@ -55,6 +55,7 @@
 									<listOptionValue builtIn="false" value="../Util/logger"/>
 									<listOptionValue builtIn="false" value="../Util/mem"/>
 									<listOptionValue builtIn="false" value="../Util/timer"/>
+									<listOptionValue builtIn="false" value="../Util/nvmm"/>
 									<listOptionValue builtIn="false" value="../LoRaWAN/Porting"/>
 									<listOptionValue builtIn="false" value="../LoRaWAN/App"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32L4xx_HAL_Driver/Inc"/>
@@ -68,9 +69,9 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/SubGHz_Phy"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/Mac/region"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/Mac"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/LmHandler/packages"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/Crypto"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/LoRaWAN/LmHandler"/>
+									<listOptionValue builtIn="false" value="../LoRaWAN/App/LmHandler"/>
+									<listOptionValue builtIn="false" value="../LoRaWAN/App/LmHandler/packages"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1637205650" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -97,11 +98,11 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Util"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="LoRaWAN"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Util"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

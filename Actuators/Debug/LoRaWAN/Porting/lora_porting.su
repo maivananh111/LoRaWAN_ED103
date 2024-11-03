@@ -1,0 +1,9 @@
+../LoRaWAN/Porting/lora_porting.c:27:6:app_enter_critical	4	static,ignoring_inline_asm
+../LoRaWAN/Porting/lora_porting.c:31:6:app_exit_critical	4	static,ignoring_inline_asm
+../LoRaWAN/Porting/lora_porting.c:38:9:GetBatteryLevel	4	static
+../LoRaWAN/Porting/lora_porting.c:44:10:GetRandomSeed	4	static
+../LoRaWAN/Porting/lora_porting.c:48:10:getRandom	8	static
+../LoRaWAN/Porting/lora_porting.c:54:6:EnableSleepMode	16	static
+../LoRaWAN/Porting/lora_porting.c:58:6:EnterSleepMode	8	static
+../LoRaWAN/Porting/lora_porting.c:71:6:EnterSleepModeOn	24	static
+../LoRaWAN/Porting/lora_porting.c:92:13:OnWakeUp	16	static

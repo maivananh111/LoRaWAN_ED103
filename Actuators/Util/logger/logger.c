@@ -105,7 +105,7 @@ void log_monitor_set_log(char *func, log_type_t log_type){
 	else if(strcmp(func, (char *)"MEMORY") == 0) logm = log_type;
 	else if(strcmp(func, (char *)"PARAM")  == 0) logv = log_type;
 	else if(strcmp(func, (char *)"RESULT") == 0) logr = log_type;
-	else LOG_ERROR("Parameter Error", "Unknown function %s.", func);
+	else LOGE("Parameter Error", "Unknown function %s.", func);
 }
 
 /**

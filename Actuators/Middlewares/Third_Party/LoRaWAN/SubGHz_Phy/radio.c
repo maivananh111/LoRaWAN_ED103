@@ -651,7 +651,7 @@ void RadioSetRxConfig(RadioModems_t modem, uint32_t bandwidth,
 		bool crcOn, bool freqHopOn, uint8_t hopPeriod,
 		bool iqInverted, bool rxContinuous) {
 
-	LOGV(TAG, "RadioSetRxConfig(), BW:%lu, DR:%lu", bandwidth, 5-(datarate-7));
+//	LOGV(TAG, "RadioSetRxConfig(), BW:%lu, DR:%lu", bandwidth, 5-(datarate-7));
 
 	RxContinuous = rxContinuous;
 	if (rxContinuous == true) {
@@ -1031,6 +1031,7 @@ uint32_t RadioTimeOnAir(RadioModems_t modem, uint32_t bandwidth,
 }
 
 void RadioSend(uint8_t *buffer, uint8_t size) {
+//	LOGE(TAG, "RadioSend");
 	SX126xSetDioIrqParams(IRQ_TX_DONE | IRQ_RX_TX_TIMEOUT,
 			IRQ_TX_DONE | IRQ_RX_TX_TIMEOUT, IRQ_RADIO_NONE, IRQ_RADIO_NONE);
 
@@ -1078,7 +1079,7 @@ void RadioRx(uint32_t timeout) {
 		SX126xSetRx(RxTimeout << 6);
 	}
 
-	LOGV(TAG, "RadioRx(), timeout: %d", timeout);
+//	LOGV(TAG, "RadioRx(), timeout: %d", timeout);
 }
 
 void RadioRxBoosted(uint32_t timeout) {

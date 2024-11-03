@@ -1,0 +1,4 @@
+../LoRaWAN/App/LmHandler/NvmDataMgmt.c:50:6:NvmDataMgmtEvent	16	static
+../LoRaWAN/App/LmHandler/NvmDataMgmt.c:54:10:NvmDataMgmtStore	4	static
+../LoRaWAN/App/LmHandler/NvmDataMgmt.c:84:10:NvmDataMgmtRestore	4	static
+../LoRaWAN/App/LmHandler/NvmDataMgmt.c:97:6:NvmDataMgmtFactoryReset	4	static

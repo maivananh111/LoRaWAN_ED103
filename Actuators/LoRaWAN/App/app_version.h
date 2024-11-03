@@ -11,7 +11,7 @@
 
 #define APP_VERSION_MAJOR    1
 #define APP_VERSION_MINOR    0
-#define APP_VERSION_REVISION 0
+#define APP_VERSION_REVISION 1
 
 
 #endif /* APP_APP_VERSION_H_ */
