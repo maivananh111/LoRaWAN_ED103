@@ -57,8 +57,7 @@ LoRaWAN/App/lora_apps.o: ../LoRaWAN/App/lora_apps.c \
  ../Core/Inc/adc_if.h ../Core/Inc/adc.h ../Core/Inc/platform.h \
  ../Core/Inc/flash_if.h ../Util/timer/systime.h ../Util/timer/timer.h \
  ../Util/timer/timer.h ../Util/logger/logger.h \
- ../LoRaWAN/App/LmHandler/Commissioning.h \
- ../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h \
+ ../LoRaWAN/App/LmHandler/Commissioning.h ../LoRaWAN/App/se-identity.h \
  ../LoRaWAN/App/LmHandler/LmHandler.h \
  ../LoRaWAN/App/LmHandler/LmHandlerTypes.h \
  ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.h \
@@ -142,7 +141,7 @@ LoRaWAN/App/lora_apps.o: ../LoRaWAN/App/lora_apps.c \
 ../Util/timer/timer.h:
 ../Util/logger/logger.h:
 ../LoRaWAN/App/LmHandler/Commissioning.h:
-../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h:
+../LoRaWAN/App/se-identity.h:
 ../LoRaWAN/App/LmHandler/LmHandler.h:
 ../LoRaWAN/App/LmHandler/LmHandlerTypes.h:
 ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.h:

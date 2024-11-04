@@ -36,8 +36,7 @@ LoRaWAN/App/LmHandler/LmHandler.o: ../LoRaWAN/App/LmHandler/LmHandler.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Util/timer/timer.h ../LoRaWAN/App/LmHandler/Commissioning.h \
- ../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h \
- ../LoRaWAN/App/LmHandler/NvmDataMgmt.h \
+ ../LoRaWAN/App/se-identity.h ../LoRaWAN/App/LmHandler/NvmDataMgmt.h \
  ../Middlewares/Third_Party/LoRaWAN/SubGHz_Phy/radio.h \
  ../LoRaWAN/App/LmHandler/LmHandler.h \
  ../LoRaWAN/App/LmHandler/LmHandlerTypes.h \
@@ -96,7 +95,7 @@ LoRaWAN/App/LmHandler/LmHandler.o: ../LoRaWAN/App/LmHandler/LmHandler.c \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
 ../Util/timer/timer.h:
 ../LoRaWAN/App/LmHandler/Commissioning.h:
-../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h:
+../LoRaWAN/App/se-identity.h:
 ../LoRaWAN/App/LmHandler/NvmDataMgmt.h:
 ../Middlewares/Third_Party/LoRaWAN/SubGHz_Phy/radio.h:
 ../LoRaWAN/App/LmHandler/LmHandler.h:

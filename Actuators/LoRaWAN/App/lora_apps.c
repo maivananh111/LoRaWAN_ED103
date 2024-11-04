@@ -206,7 +206,7 @@ void LoRaWAN_Init(void){
         Error_Handler();
     }
 
-    LmHandlerSetSystemMaxRxError( 20 );
+    LmHandlerSetSystemMaxRxError( 100 );
     LmHandlerPackageRegister( PACKAGE_ID_COMPLIANCE, &LmhpComplianceParams );
     LmHandlerPackageRegister( PACKAGE_ID_CLOCK_SYNC, &LmhpComplianceParams );
     LmHandlerJoin();

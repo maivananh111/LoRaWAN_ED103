@@ -30,14 +30,14 @@
 
 void SoftSeHalGetUniqueId( uint8_t *id )
 {
-    id[7] = ( ( *( uint32_t* )UID_BASE )+ ( *( uint32_t* )UID_BASE+2 ) ) >> 24;
-    id[6] = ( ( *( uint32_t* )UID_BASE )+ ( *( uint32_t* )UID_BASE+2 ) ) >> 16;
-    id[5] = ( ( *( uint32_t* )UID_BASE )+ ( *( uint32_t* )UID_BASE+2 ) ) >> 8;
-    id[4] = ( ( *( uint32_t* )UID_BASE )+ ( *( uint32_t* )UID_BASE+2 ) );
-    id[3] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 24;
-    id[2] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 16;
-    id[1] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 8;
-    id[0] = ( ( *( uint32_t* )UID_BASE+1 ) );
+    id[7] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 24;
+    id[6] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 16;
+    id[5] = ( ( *( uint32_t* )UID_BASE+1 ) ) >> 8;
+    id[4] = ( ( *( uint32_t* )UID_BASE+1 ) );
+    id[3] = ( ( *( uint32_t* )UID_BASE   ) ) >> 24;
+    id[2] = ( ( *( uint32_t* )UID_BASE   ) ) >> 16;
+    id[1] = ( ( *( uint32_t* )UID_BASE   ) ) >> 8;
+    id[0] = ( ( *( uint32_t* )UID_BASE   ) );
 }
 
 uint32_t SoftSeHalGetRandomNumber( void )

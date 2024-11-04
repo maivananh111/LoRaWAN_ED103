@@ -91,7 +91,7 @@ extern "C"
 /*!
  * Maximal datarate that can be used by the node
  */
-#define AS923_TX_MAX_DATARATE                       DR_5
+#define AS923_TX_MAX_DATARATE                       DR_7
 
 /*!
  * Minimal datarate that can be used by the node
@@ -101,7 +101,7 @@ extern "C"
 /*!
  * Maximal datarate that can be used by the node
  */
-#define AS923_RX_MAX_DATARATE                       DR_5
+#define AS923_RX_MAX_DATARATE                       DR_7
 
 /*!
  * Default datarate used by the node

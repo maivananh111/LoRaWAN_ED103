@@ -52,7 +52,7 @@ Middlewares/Third_Party/LoRaWAN/Crypto/soft-se.o: \
  ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacMessageTypes.h \
  ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacHeaderTypes.h \
  ../Middlewares/Third_Party/LoRaWAN/Mac/secure-element-nvm.h \
- ../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h \
+ ../LoRaWAN/App/se-identity.h \
  ../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se-hal.h
 ../Middlewares/Third_Party/LoRaWAN/Utilities/utilities.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -108,5 +108,5 @@ Middlewares/Third_Party/LoRaWAN/Crypto/soft-se.o: \
 ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacMessageTypes.h:
 ../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacHeaderTypes.h:
 ../Middlewares/Third_Party/LoRaWAN/Mac/secure-element-nvm.h:
-../Middlewares/Third_Party/LoRaWAN/Crypto/se-identity.h:
+../LoRaWAN/App/se-identity.h:
 ../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se-hal.h:
