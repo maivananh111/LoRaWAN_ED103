@@ -403,7 +403,8 @@ static void run_next_activation_step(void){
 	if (running_step == LAST_RUN_STEP) return;
 	LOGI(TAG, "Run motor step %hu", running_step);
 
-	xQueueSend(queue_timer_session, (void *)&session, 50);
+	if (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET)
+		xQueueSend(queue_timer_session, (void *)&session, 50);
 
 	switch (running_step) {
 		case 1: /** cc: Bắt đầu đẩy ra */
@@ -661,7 +662,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == NFC_WAKE_Pin) {
 		for(uint32_t i=0; i<120000; i++) __NOP(); //10ms
 
-		if(HAL_GPIO_ReadPin(NFC_WAKE_GPIO_Port, NFC_WAKE_Pin) == GPIO_PIN_RESET && LmHandlerJoinStatus() == LORAMAC_HANDLER_SET){
+		if(HAL_GPIO_ReadPin(NFC_WAKE_GPIO_Port, NFC_WAKE_Pin) == GPIO_PIN_RESET){
 			LOGV(TAG, "Start activation due to user press button");
 			TimerStop(&activation_timer);
 			EnableSleepMode(false);
