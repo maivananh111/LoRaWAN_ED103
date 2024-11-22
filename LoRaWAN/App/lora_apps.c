@@ -408,11 +408,9 @@ static void run_next_activation_step(void){
 	switch (running_step) {
 		case 1: /** cc: Bắt đầu đẩy ra */
 			HAL_GPIO_WritePin(EN_12V_GPIO_Port, EN_12V_Pin, GPIO_PIN_SET);
-			LOGI(TAG, "TURN 12V ON");
 			vTaskDelay(1000);
 			HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, 0);
 			HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, 1);
-			LOGI(TAG, "MOTOR CONTROLLED");
 			vTaskDelay(5000); /** Thời gian chạy các bước, 10s là ước tính dựa trên bản demo 10 năm trước */
 		break;
 		case 2: /** cc: Bắt đầu giữ lại ở điểm cao nhất */
