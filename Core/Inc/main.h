@@ -112,6 +112,7 @@ void Error_Handler(void);
 #define EN_12V_GPIO_Port GPIOC
 #define NFC_WAKE_Pin GPIO_PIN_8
 #define NFC_WAKE_GPIO_Port GPIOC
+#define NFC_WAKE_EXTI_IRQn EXTI9_5_IRQn
 #define RST_RTC_Pin GPIO_PIN_8
 #define RST_RTC_GPIO_Port GPIOA
 #define I2C_SCL_Pin GPIO_PIN_9

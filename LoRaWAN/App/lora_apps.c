@@ -654,6 +654,22 @@ static void OnPingSlotPeriodicityChanged(uint8_t pingSlotPeriodicity) {
 
 
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	if (GPIO_Pin == LORA_INT_Pin) {
+		RadioOnDioIrq();
+	}
+	if (GPIO_Pin == NFC_WAKE_Pin) {
+		for(uint32_t i=0; i<120000; i++) __NOP(); //10ms
+
+		if(HAL_GPIO_ReadPin(NFC_WAKE_GPIO_Port, NFC_WAKE_Pin) == GPIO_PIN_RESET && LmHandlerJoinStatus() == LORAMAC_HANDLER_SET){
+			LOGV(TAG, "Start activation due to user press button");
+			TimerStop(&activation_timer);
+			EnableSleepMode(false);
+			xTaskResumeFromISR(htask_activation);
+			running_step = 0;
+		}
+	}
+}
 
 
 

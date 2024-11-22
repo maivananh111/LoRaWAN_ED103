@@ -35,10 +35,3 @@ void app_main(void) {
 
 
 
-
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (GPIO_Pin == LORA_INT_Pin) {
-		RadioOnDioIrq();
-	}
-}
-
