@@ -28,7 +28,7 @@
 
 
 #define DEVICE 										CALLPOINT_ACTUATOR
-#define APPLICATION 								"Actuator device"
+#define APPLICATION 								"Callpoint Actuator"
 
 #define JOINDELAY_EXPO 								(20000U)
 #define JOINDELAY_MAX  								(10*60*1000U)
