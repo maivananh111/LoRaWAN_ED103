@@ -18,7 +18,7 @@
 #include "systime.h"
 #include "timer.h"
 #include "logger.h"
-
+#include "radio.h"
 #include "Commissioning.h"
 #include "LmHandler.h"
 #include "LmhpCompliance.h"
@@ -174,11 +174,17 @@ static void attemp_tosend_uplink(appmsg_types_t session);
 static void rejoin_to_network(void);
 static void newactivationtime_apply_and_starttimer(uint32_t new_next_act);
 
+static uint32_t Get_TimeStamp(void);
+
+
+
 /**
  * **********************************************************************************************************************************************
  * LoRaWAN Initialize.
  */
 void LoRaWAN_Init(void){
+	log_monitor_set_timestamp_cb(Get_TimeStamp);
+
 	enable_regular_check = false;
 	enable_activation = false;
 	max_send_count = DEFAUT_MAX_SEND_COUNT;
@@ -211,6 +217,7 @@ void LoRaWAN_Init(void){
     LmHandlerPackageRegister( PACKAGE_ID_COMPLIANCE, &LmhpComplianceParams );
     LmHandlerPackageRegister( PACKAGE_ID_CLOCK_SYNC, &LmhpComplianceParams );
     LmHandlerJoin();
+    LOGI(TAG, "Perform join.");
 }
 
 
@@ -278,6 +285,7 @@ static void OnJoinRequest(LmHandlerJoinParams_t *params) {
 
 static void OnTxData(LmHandlerTxParams_t *params){
 	if (!params->IsMcpsConfirm){
+		LOGI(TAG, "Sent uplink");
 		DisplayTxUpdate(params);
 
 		prepare_tosend_uplink();
@@ -448,6 +456,8 @@ static void rejoin_exponential_backoff(void) {
 
 	if(next_join_delay <= JOINDELAY_MAX)
 		next_join_delay += next_join_delay;
+
+	LOGI(TAG, "Perform join.");
 	LmHandlerJoin();
 }
 
@@ -472,7 +482,7 @@ static void prepare_tosend_uplink(void) {
 	if (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET && xSemaphoreTake(sem_nextsend_isready, 50)){
 		if (uplink_session_count < max_send_count){
 			uint32_t nexttx = (getRandom()%(RETRY_TOSEND_UPLINK_DELAY_MAX - RETRY_TOSEND_UPLINK_DELAY_MIN) + RETRY_TOSEND_UPLINK_DELAY_MIN) * 1000U;
-			LOGW(TAG, "Next uplink message will be send after %dms", nexttx);
+			LOGW(TAG, "Resend uplink after %dms if nothing is received.", nexttx);
 			TimerSetValue(&send_repeat_timer, nexttx);
 			TimerStart(&send_repeat_timer);
 		}
@@ -500,16 +510,17 @@ static void attemp_tosend_uplink(appmsg_types_t session) {
 			mlmeReq.Type = MLME_LINK_CHECK;
 			linkcheck_request = true;
 		}
+		if (session == SESSION_BOOTUP || session == SESSION_REGULAR_CHECKS) {
+			status = LoRaMacMlmeRequest( &mlmeReq );
+			if (status != LORAMAC_HANDLER_SUCCESS)
+				LOGE(TAG, "Add mlme request failed");
+		}
 
-		status = LoRaMacMlmeRequest( &mlmeReq );
-		if (status != LORAMAC_HANDLER_SUCCESS)
-			LOGE(TAG, "Add mlme request failed");
 		status = LmHandlerSend(&AppData, LORAWAN_DEFAULT_CONFIRMED_MSG_STATE);
 		if (status != LORAMAC_HANDLER_SUCCESS)
 			LOGE(TAG, "Send uplink message failed");
 
 		else {
-			LOGV(TAG, "Sent uplink");
 			if (session == SESSION_BOOTUP) {
 				SysTime_t curTime = SysTimeGet();
 				LOGI(TAG, "Sync time status %d, curent time is %ds %dms", status, curTime.Seconds, curTime.SubSeconds);
@@ -524,7 +535,7 @@ static void attemp_tosend_uplink(appmsg_types_t session) {
 
 static void rejoin_to_network(void) {
 	uplink_session_count = 0;
-	LOGE(TAG, "*********************************** END **************************************");
+	LOGM(TAG, "*********************************** END **************************************");
 
 	vTaskSuspend(htask_app);
 	if (TimerIsStarted(&send_repeat_timer)) 	TimerStop(&send_repeat_timer);
@@ -559,10 +570,11 @@ static void newactivationtime_apply_and_starttimer(uint32_t new_next_act) {
 	SysTime_t curTime = SysTimeGet();
 	uint32_t curr_time_s = curTime.Seconds;
 
-	LOGV(TAG, "Hiện tại là %lu, mới là %lu", curr_time_s, new_next_act);
 	if (new_next_act > (curr_time_s + PRE_TO_ACTIVATION_TIME + PRE_ACTIVATION_DELAY) && new_next_act != curr_activation_time){
 		curr_activation_time = new_next_act;
-		LOGE(TAG, "Preactivation will occur at %lus, activation will occur at %lus", curr_activation_time - PRE_TO_ACTIVATION_TIME, curr_activation_time);
+		LOGM(TAG, "Preactivation will occur at %lus(in %lus), activation will occur at %lus(in %lus)",
+				curr_activation_time - PRE_TO_ACTIVATION_TIME, (curr_activation_time - PRE_TO_ACTIVATION_TIME - curr_time_s),
+				curr_activation_time, (curr_activation_time - curr_time_s));
 		TimerStop(&preactivation_timer);
 		TimerStop(&activation_timer);
 		TimerSetValue(&preactivation_timer, (curr_activation_time - PRE_TO_ACTIVATION_TIME - curr_time_s)*1000U);
@@ -574,7 +586,7 @@ static void newactivationtime_apply_and_starttimer(uint32_t new_next_act) {
 
 
 static void startsession_blockapp(appmsg_types_t session) {
-	LOGE(TAG, "********************************** START *************************************");
+	LOGM(TAG, "********************************** START *************************************");
 	LOGV(TAG, "%s", SessionString[session]);
 	send_uplink_message(session);
 
@@ -596,7 +608,7 @@ static void stopsession_releaseapp(void) {
 	vTaskResume(htask_app);
 
 	LOGV(TAG, "End session");
-	LOGE(TAG, "*********************************** END **************************************");
+	LOGM(TAG, "*********************************** END **************************************");
 
 	EnterSleepMode();
 }
@@ -672,7 +684,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	}
 }
 
-
+static uint32_t Get_TimeStamp(void){
+	return SysTimeToMs(SysTimeGet());
+}
 
 
 

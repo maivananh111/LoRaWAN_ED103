@@ -33,6 +33,7 @@ static const char *log_level_str[] = {
 };
 
 static void (*plog)(char *str);
+static uint32_t (*ptimestamp)(void);
 static const char *COLOR_END = "\033[0m";
 static const char *LOG_COLOR[] = {
 	"\033[0;30m",
@@ -86,6 +87,15 @@ static const char *LOG_COLOR[] = {
  */
 void log_monitor_init(void (*PrintString_Function)(char*)){
 	plog = PrintString_Function;
+	ptimestamp = HAL_GetTick;
+}
+
+/**
+ *
+ * @param TimeStamp_Function
+ */
+void log_monitor_set_timestamp_cb(uint32_t (*TimeStamp_Function)(void)){
+	ptimestamp = TimeStamp_Function;
 }
 
 /**
@@ -120,7 +130,7 @@ void log_monitor_set_log(char *func, log_type_t log_type){
  */
 
 void LOG(log_type_t log_type, const char *tag, const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -145,7 +155,7 @@ void LOG(log_type_t log_type, const char *tag, const char *format, ...){
  * @param format
  */
 void LOGI(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -170,7 +180,7 @@ void LOGI(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGW(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -195,7 +205,7 @@ void LOGW(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGE(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -220,7 +230,7 @@ void LOGE(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGD(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -245,7 +255,7 @@ void LOGD(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGM(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -270,7 +280,7 @@ void LOGM(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGV(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);
@@ -295,7 +305,7 @@ void LOGV(const char *tag,  const char *format, ...){
  * @param format
  */
 void LOGR(const char *tag,  const char *format, ...){
-	uint32_t time = HAL_GetTick();
+	uint32_t time = ptimestamp();
 	char *Temp_buffer = NULL;
 	va_list args;
 	va_start(args, format);

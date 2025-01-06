@@ -11,6 +11,7 @@
 
 #include "stdio.h"
 #include "stdarg.h"
+#include "stdint.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -59,6 +60,7 @@ typedef enum{
 
 
 void log_monitor_init(void (*PrintString_Function)(char*));
+void log_monitor_set_timestamp_cb(uint32_t (*TimeStamp_Function)(void));
 
 void log_monitor_set_log(char *func, log_type_t log_type);
 
